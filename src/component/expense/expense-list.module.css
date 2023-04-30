@@ -1,0 +1,9 @@
+.expense-container {
+  width: 100%;
+  margin-right: 2rem;
+  margin-top: 2rem;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+}
