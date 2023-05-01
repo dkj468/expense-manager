@@ -29,7 +29,7 @@ const useInput = (modelObj, errorObj) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    const { isError, error } = validateInput(name, value);
+    const {error } = validateInput(name, value);
     setErrorState({
       ...errorState,
       [name]: error,
