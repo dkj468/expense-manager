@@ -21,6 +21,7 @@ const expenseAccounts = [
   { id: 2, name: "HDFC Bank" },
   { id: 3, name: "PhonePay (HDFC Bank)" },
   { id: 4, name: "Amazon Pay" },
+  { id: 5, name: "Cash" },
 ];
 const ExpenseForm = (props) => {
   const [isFormValid, setIsFormValid] = useState(undefined);
@@ -59,8 +60,9 @@ const ExpenseForm = (props) => {
     }
   };
   return (
-    <div className={classes.expenseForm}>
-      <form className={classes.form} onSubmit={handleSubmit}>
+    <div className={classes.form}>
+      <span className={classes["form-header"]}>Expense Detail</span>
+      <form onSubmit={handleSubmit}>
         <div className={classes["form-field"]}>
           <label htmlFor="expenseName">Expense Name</label>
           <input

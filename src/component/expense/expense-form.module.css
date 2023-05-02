@@ -1,14 +1,28 @@
-.expenseForm {
-  display: flex;
-  margin: auto;
-  margin-top: 2rem;
-  width: 80%;
-}
-
 .form {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  gap: 0.1rem;
+  width: 100%;
+  border: 1px solid black;
+  padding: 0.4rem;
+  height: calc(100% -30vh);
+  margin-top: 0.2rem;
+  border-radius: 0.3rem;
+}
+
+.form-header {
+  background-color: black;
+  padding: 0.5rem;
+  text-align: center;
+  font-size: 2rem;
+  color: white;
+}
+
+@media screen and (min-width: 560px) {
+  .form {
+    width: 50%;
+    height: calc(100% - 500px);
+  }
 }
 
 .form-field {
@@ -17,23 +31,19 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 90%;
 }
 
 .form-button {
-  margin-top: 3rem;
-  height: 3.5rem;
+  margin-top: 2rem;
   display: flex;
   justify-content: center;
-  height: 60%;
-}
-
-.form-field label {
-  font-size: 1.2rem;
 }
 
 .form-field input {
   padding: 0.3rem;
   border-radius: 0.3rem;
+  width: 100%;
 }
 
 .form-field select {
@@ -61,5 +71,5 @@ button[disabled] {
 
 .error {
   color: red;
-  font-size: 2rem;
+  font-size: 0.8rem;
 }
