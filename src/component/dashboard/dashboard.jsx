@@ -25,7 +25,6 @@ const Dashboard = () => {
     fetchData();
   }, [isReload]);
 
-  const calculateExpenseThisMonth = () => {};
   return (
     <>
       <div>

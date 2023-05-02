@@ -47,7 +47,7 @@ const ExpenseForm = (props) => {
     e.preventDefault();
     try {
       const docRef = await addDoc(collection(db, "expenses"), {
-        date: new Date().toLocaleString(),
+        date: new Date(),
         user: "Deepak Jain",
         expenseAccountName:
           expenseAccounts[modelState["expenseAccount"] - 1].name,
