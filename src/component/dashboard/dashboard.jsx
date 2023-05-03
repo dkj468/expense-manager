@@ -3,14 +3,17 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase";
 import ExpenseForm from "../expense/expense-form";
 import ExpenseList from "../expense/expense-list";
+import Loader from "../UI/Loader";
 import classes from "./dashboard.module.css";
 
 const Dashboard = () => {
   const [isReload, setIsReload] = useState(false);
   const [expenses, setExpenses] = useState([]);
+  const [IsLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true);
       await getDocs(collection(db, "expenses")).then((querySnapshot) => {
         const newData = querySnapshot.docs.map((doc) => ({
           ...doc.data(),
@@ -18,12 +21,16 @@ const Dashboard = () => {
         }));
         setExpenses(newData);
         setIsReload(false);
-        console.log(newData);
+        setIsLoading(false);
       });
     };
 
     fetchData();
   }, [isReload]);
+
+  if(IsLoading) {
+    return (<Loader />)
+  }
 
   return (
     <>
