@@ -21,7 +21,6 @@ const Dashboard = () => {
         }));
         setExpenses(newData);
         setIsReload(false);
-        console.log(newData);
         setIsLoading(false);
       });
     };
