@@ -5,15 +5,16 @@ import { getFirestore } from "firebase/firestore";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
+console.log(process.env.NODE_ENV);
 const firebaseConfig = {
-  apiKey: "AIzaSyC9v18oG2TSDw9lKO2ENLZDzMuB9YqRM8k",
-  authDomain: "expense-manager-6c808.firebaseapp.com",
+  apiKey: `${process.env.REACT_APP_API_KEY}`,
+  authDomain: `${process.env.REACT_APP_AUTH_DOMAIN}`,
   databaseURL:
     "https://expense-manager-6c808-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "expense-manager-6c808",
+  projectId: `${process.env.REACT_APP_PROJECT_ID}`,
   storageBucket: "expense-manager-6c808.appspot.com",
   messagingSenderId: "269408963187",
-  appId: "1:269408963187:web:4dc68717014a0c4af8f806",
+  appId: `${process.env.REACT_APP_APP_ID}`,
 };
 
 // Initialize Firebase
