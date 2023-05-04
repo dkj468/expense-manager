@@ -14,22 +14,29 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
-      await getDocs(collection(db, "expenses")).then((querySnapshot) => {
-        const newData = querySnapshot.docs.map((doc) => ({
-          ...doc.data(),
-          id: doc.id,
-        }));
-        setExpenses(newData);
-        setIsReload(false);
-        setIsLoading(false);
-      });
+      try {
+        await getDocs(collection(db, "expenses")).then((querySnapshot) => {
+          const newData = querySnapshot.docs.map((doc) => ({
+            ...doc.data(),
+            id: doc.id,
+          }));
+          newData.sort((a, b) => {
+            return b.date - a.date;
+          });
+          setExpenses(newData);
+          setIsReload(false);
+          setIsLoading(false);
+        });
+      } catch (err) {
+        console.log(err, err.message);
+      }
     };
 
     fetchData();
   }, [isReload]);
 
-  if(IsLoading) {
-    return (<Loader />)
+  if (IsLoading) {
+    return <Loader />;
   }
 
   return (
