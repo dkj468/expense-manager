@@ -1,7 +1,9 @@
 import classes from "./expense.module.css";
 
 const Expense = (props) => {
-  const { expenseName, date, expenseAccountName, expenseAmount } = { ...props };
+  const { expenseName, expenseDate, expenseAccountName, expenseAmount } = {
+    ...props,
+  };
 
   const convertTimestamp = (timestamp) => {
     let date = timestamp.toDate();
@@ -17,7 +19,7 @@ const Expense = (props) => {
       <div className={classes.detail}>
         <span>{expenseName}</span>
         <span className={classes["expense-date"]}>
-          {convertTimestamp(date)}
+          {convertTimestamp(expenseDate)}
         </span>
       </div>
       <span>{expenseAccountName}</span>
