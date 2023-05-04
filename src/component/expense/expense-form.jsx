@@ -47,7 +47,6 @@ const ExpenseForm = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(modelState);
     try {
       const docRef = await addDoc(collection(db, "expenses"), {
         user: "Deepak Jain",
