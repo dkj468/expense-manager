@@ -8,12 +8,14 @@ const modelObj = {
   expenseName: undefined,
   expenseAmount: undefined,
   expenseAccount: undefined,
+  expenseDate: undefined,
 };
 
 const errorObj = {
   expenseName: null,
   expenseAmount: null,
   expenseAccount: null,
+  expenseDate: undefined,
 };
 
 const expenseAccounts = [
@@ -47,11 +49,11 @@ const ExpenseForm = (props) => {
     e.preventDefault();
     try {
       const docRef = await addDoc(collection(db, "expenses"), {
-        date: new Date(),
         user: "Deepak Jain",
         expenseAccountName:
           expenseAccounts[modelState["expenseAccount"] - 1].name,
         ...modelState,
+        expenseDate: new Date(modelState["expenseDate"]),
       });
       console.log("Document written with ID: ", docRef.id);
       props.onReload(true);
@@ -112,6 +114,20 @@ const ExpenseForm = (props) => {
             <label className={classes.error}>
               {errorState["expenseAccount"]}
             </label>
+          )}
+        </div>
+        <div className={classes["form-field"]}>
+          <label htmlFor="expenseDate">Expense Amount</label>
+          <input
+            type="date"
+            id="expenseDate"
+            defaultValue={new Date()}
+            name="expenseDate"
+            value={modelState["expenseDate"]}
+            onChange={handleChange}
+          />
+          {errorState["expenseDate"] && (
+            <label className={classes.error}>{errorState["expenseDate"]}</label>
           )}
         </div>
         <div className={classes["form-button"]}>

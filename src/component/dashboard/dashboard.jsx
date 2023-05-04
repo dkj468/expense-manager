@@ -21,7 +21,7 @@ const Dashboard = () => {
             id: doc.id,
           }));
           newData.sort((a, b) => {
-            return b.date - a.date;
+            return b.expenseDate - a.expenseDate;
           });
           setExpenses(newData);
           setIsReload(false);
