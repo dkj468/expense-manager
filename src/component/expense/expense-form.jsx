@@ -117,7 +117,7 @@ const ExpenseForm = (props) => {
           )}
         </div>
         <div className={classes["form-field"]}>
-          <label htmlFor="expenseDate">Expense Amount</label>
+          <label htmlFor="expenseDate">Expense Date</label>
           <input
             type="date"
             id="expenseDate"
