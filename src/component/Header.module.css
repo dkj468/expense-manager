@@ -1,6 +1,5 @@
 .header {
   display: flex;
-  margin-top: 1rem;
   height: 2rem;
   padding: 1rem;
   align-items: center;
@@ -9,10 +8,23 @@
   color: white;
 }
 
-.header button {
+/* .header button {
   padding: 1rem;
   border-radius: 0.4rem;
   font-size: 1rem;
   background-color: black;
   color: white;
+} */
+
+.link {
+  text-decoration: none;
+  color: white;
+  font-size: 1.9rem;
+  font-weight: 700;
+  font-style: oblique;
+}
+
+.action {
+  display: flex;
+  gap: 1rem;
 }
