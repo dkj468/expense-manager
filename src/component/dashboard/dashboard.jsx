@@ -11,6 +11,13 @@ const Dashboard = () => {
   const [expenses, setExpenses] = useState([]);
   const [IsLoading, setIsLoading] = useState(false);
 
+  const calculateMonthlyExpense = () => {
+    let monthlyData = 0;
+    expenses.forEach((expense) => {
+      monthlyData += expense.expenseAmount * 1;
+    });
+    return monthlyData;
+  };
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
@@ -42,7 +49,7 @@ const Dashboard = () => {
   return (
     <>
       <div>
-        <h1>This month total expense : </h1>
+        <h1>This month total expense : {calculateMonthlyExpense()}</h1>
       </div>
       <div className={classes.dashboard}>
         <ExpenseList expenses={expenses} />
