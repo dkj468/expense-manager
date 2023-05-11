@@ -61,7 +61,7 @@ const Register = () => {
           placeholder="Please provide a password..."
           onChange={changeHandler}
         />
-        <button type="submit">Sing Up</button>
+        <button type="submit" disabled={isLoading}>Sing Up</button>
         {error && (
           <span className={classes.error}>
             {getErrorFromCode(error.errorCode)}
