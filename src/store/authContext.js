@@ -6,11 +6,11 @@ export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(undefined);
 
   const login = (email) => {
-    setUser({
-      ...user,
-      email: email,
-      isLoggedIn: true,
-    });
+    // setUser({
+    //   ...user,
+    //   email: email,
+    //   isLoggedIn: true,
+    // });
   };
 
   const logout = () => {

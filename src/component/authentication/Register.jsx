@@ -3,7 +3,7 @@ import classes from "./Register.module.css";
 import { useAuthContext } from "../../store/authContext";
 import { useNavigate } from "react-router";
 import Loader from "../UI/Loader";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import { auth } from "../../firebase";
 import { getErrorFromCode } from "../../Utils/AuthError";
 
@@ -11,7 +11,7 @@ const Register = () => {
   const [formData, setFormData] = useState({});
   const [error, setError] = useState(undefined);
   const [isLoading, setIsLoading] = useState(false);
-  const { setUser } = useAuthContext();
+  const {setUser } = useAuthContext();
   const navigate = useNavigate();
 
   const changeHandler = (e) => {
@@ -30,6 +30,7 @@ const Register = () => {
         // Signed in
         setUser(userCredential.user);
         setIsLoading(false);
+        sendUserEmailVerification(userCredential.user);
         navigate("/");
       })
       .catch((error) => {
@@ -41,9 +42,24 @@ const Register = () => {
       });
   };
 
-  const submitHandler = (e) => {
+  const sendUserEmailVerification  = async(user)=> {
+    sendEmailVerification(user)
+    .then(() => {
+      // Email verification sent!
+      // ...x
+      console.log("email sent successfully");
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+    })
+  };
+
+  const submitHandler = async (e) => {
     e.preventDefault();
     register(formData.email, formData.password);
+    //sendUserEmailVerification();
   };
   return (
     <>
