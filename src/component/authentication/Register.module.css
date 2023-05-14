@@ -1,0 +1,25 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 50%;
+  margin: auto;
+  margin-top: 1rem;
+}
+
+input {
+  padding: 0.5rem;
+}
+
+button {
+  height: 2rem;
+}
+
+.error {
+  color: red;
+}
+
+.info {
+  color: green;
+  font-size: 1.2rem;
+}

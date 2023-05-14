@@ -1,17 +1,23 @@
-.dashboard {
+.home {
   display: flex;
   justify-content: space-evenly;
-  flex-direction: column;
   gap: 2rem;
-  margin-top: 1rem;
-  border-top: 1px solid black;
-  margin: auto;
+  flex-direction: column;
+}
+
+.about {
+  width: 100%;
+  padding: 1rem;
 }
 
 @media screen and (min-width: 560px) {
-  .dashboard {
+  .home {
     display: flex;
     justify-content: space-evenly;
     flex-direction: row;
+  }
+
+  .about {
+    width: 50%;
   }
 }
