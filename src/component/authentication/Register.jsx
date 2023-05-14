@@ -1,9 +1,10 @@
 import { useState } from "react";
 import classes from "./Register.module.css";
-import { useAuthContext } from "../../store/authContext";
-import { useNavigate } from "react-router";
 import Loader from "../UI/Loader";
-import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+} from "firebase/auth";
 import { auth } from "../../firebase";
 import { getErrorFromCode } from "../../Utils/AuthError";
 
@@ -11,8 +12,8 @@ const Register = () => {
   const [formData, setFormData] = useState({});
   const [error, setError] = useState(undefined);
   const [isLoading, setIsLoading] = useState(false);
-  const {setUser } = useAuthContext();
-  const navigate = useNavigate();
+  const [isEmail, setIsEmail] = useState(false);
+  // const navigate = useNavigate();
 
   const changeHandler = (e) => {
     const { name, value } = e.target;
@@ -28,10 +29,8 @@ const Register = () => {
     await createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
-        setUser(userCredential.user);
         setIsLoading(false);
         sendUserEmailVerification(userCredential.user);
-        navigate("/");
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -42,18 +41,23 @@ const Register = () => {
       });
   };
 
-  const sendUserEmailVerification  = async(user)=> {
+  const sendUserEmailVerification = async (user) => {
+    setError(undefined);
+    setIsLoading(true);
+    setIsEmail(false);
     sendEmailVerification(user)
-    .then(() => {
-      // Email verification sent!
-      // ...x
-      console.log("email sent successfully");
-    })
-    .catch((error) => {
-      const errorCode = error.code;
+      .then(() => {
+        console.log("email sent successfully");
+        setIsLoading(false);
+        setIsEmail(true);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode, errorMessage);
-    })
+        setError({ errorCode, errorMessage });
+        setIsLoading(false);
+      });
   };
 
   const submitHandler = async (e) => {
@@ -77,10 +81,18 @@ const Register = () => {
           placeholder="Please provide a password..."
           onChange={changeHandler}
         />
-        <button type="submit" disabled={isLoading}>Sing Up</button>
+        <button type="submit" disabled={isLoading}>
+          Sing Up
+        </button>
         {error && (
           <span className={classes.error}>
             {getErrorFromCode(error.errorCode)}
+          </span>
+        )}
+        {isEmail && (
+          <span className={classes.info}>
+            An email has been sent to your email id. Please click on the link
+            provided and verify your email address.
           </span>
         )}
       </form>

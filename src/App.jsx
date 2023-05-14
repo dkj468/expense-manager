@@ -5,6 +5,7 @@ import RootPage from "./pages/RootPage";
 import RegisterPage from "./pages/RegisterPage";
 import DashboardPage from "./pages/DashboardPage";
 import { AuthContextProvider } from "./store/authContext";
+import Protected from "./component/authentication/Protected";
 
 const router = createBrowserRouter([
   {
@@ -21,7 +22,11 @@ const router = createBrowserRouter([
       },
       {
         path: "dashboard",
-        element: <DashboardPage />,
+        element: (
+          <Protected>
+            <DashboardPage />
+          </Protected>
+        ),
       },
     ],
   },
