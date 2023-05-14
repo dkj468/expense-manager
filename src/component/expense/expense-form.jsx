@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, Timestamp } from "firebase/firestore";
 import useInput from "../../hooks/useInput";
 import classes from "./expense-form.module.css";
 import { db } from "../../firebase";
+import { useAuthContext } from "../../store/authContext";
+import { useExpenseContext } from "../../store/expenseContext";
 
 const modelObj = {
   expenseName: undefined,
@@ -28,6 +30,8 @@ const expenseAccounts = [
 const ExpenseForm = (props) => {
   const [isFormValid, setIsFormValid] = useState(undefined);
   const { modelState, errorState, handleChange } = useInput(modelObj, errorObj);
+  const { user } = useAuthContext();
+  const { addExpense } = useExpenseContext();
 
   useEffect(() => {
     setIsFormValid(true);
@@ -48,15 +52,16 @@ const ExpenseForm = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const docRef = await addDoc(collection(db, "expenses"), {
-        user: "Deepak Jain",
+      const expense = {
+        user: user.uid,
         expenseAccountName:
           expenseAccounts[modelState["expenseAccount"] - 1].name,
         ...modelState,
-        expenseDate: new Date(modelState["expenseDate"]),
-      });
+        expenseDate: Timestamp.fromDate(new Date(modelState["expenseDate"])),
+      };
+      const docRef = await addDoc(collection(db, "expenses"), expense);
       console.log("Document written with ID: ", docRef.id);
-      props.onReload(true);
+      addExpense({ id: docRef.id, ...expense });
     } catch (err) {
       console.error("Error adding document: ", err);
     }
