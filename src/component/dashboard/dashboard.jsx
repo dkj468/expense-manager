@@ -18,7 +18,6 @@ const Dashboard = () => {
   if (IsLoading) {
     return <Loader />;
   }
-
   return (
     <>
       <div>
