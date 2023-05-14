@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
+import { useAuthContext } from "./authContext";
 
 export const ExpenseContext = React.createContext();
 
@@ -8,6 +9,7 @@ export const ExpenseContextProvider = ({ children }) => {
   const [expenses, setExpenses] = useState([]);
   const [IsLoading, setIsLoading] = useState(false);
 
+  const { user } = useAuthContext();
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
@@ -20,7 +22,8 @@ export const ExpenseContextProvider = ({ children }) => {
           newData.sort((a, b) => {
             return b.expenseDate - a.expenseDate;
           });
-          setExpenses(newData);
+          const filteredData = newData.filter((el) => el.user === user.uid);
+          setExpenses(filteredData);
           setIsLoading(false);
         });
       } catch (err) {
@@ -29,7 +32,7 @@ export const ExpenseContextProvider = ({ children }) => {
     };
 
     fetchData();
-  }, []);
+  }, [user.uid]);
 
   const addExpense = (expense) => {
     const tempExpenses = [...expenses];
