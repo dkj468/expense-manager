@@ -6,11 +6,19 @@ import { db } from "../../firebase";
 import { useAuthContext } from "../../store/authContext";
 import { useExpenseContext } from "../../store/expenseContext";
 
+const getFormattedDate = (date) => {
+  const formateDay =
+    date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
+  const formatMonth =
+    date.getMonth() < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1;
+  const formatDate = [date.getFullYear(), formatMonth, formateDay].join("-");
+  return formatDate;
+};
 const modelObj = {
   expenseName: undefined,
   expenseAmount: undefined,
   expenseAccount: undefined,
-  expenseDate: undefined,
+  expenseDate: getFormattedDate(new Date()),
 };
 
 const errorObj = {
@@ -126,7 +134,6 @@ const ExpenseForm = (props) => {
           <input
             type="date"
             id="expenseDate"
-            defaultValue={new Date()}
             name="expenseDate"
             value={modelState["expenseDate"]}
             onChange={handleChange}

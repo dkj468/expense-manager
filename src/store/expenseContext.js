@@ -35,8 +35,7 @@ export const ExpenseContextProvider = ({ children }) => {
   }, [user.uid]);
 
   const addExpense = (expense) => {
-    const tempExpenses = [...expenses];
-    tempExpenses.push(expense);
+    const tempExpenses = [expense, ...expenses];
     setExpenses(tempExpenses);
   };
   return (
