@@ -28,6 +28,7 @@ const Header = () => {
       <Link className={classes.link} to="/">
         Expense Manager
       </Link>
+      <Link to="/accounts" >Accounts</Link>
       {user && IsLoggedIn() && (
         <div className={classes.action}>
           <span>Welcome {user.email}</span>
