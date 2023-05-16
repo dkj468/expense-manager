@@ -1,8 +1,10 @@
 import classes from "./expense-account-form.module.css";
 import { useEffect, useState } from "react";
+import { collection, addDoc, Timestamp } from "firebase/firestore";
+import { db } from "../../firebase";
 import useInput from "../../hooks/useInput";
 import { useAuthContext } from "../../store/authContext";
-import { useExpenseContext } from "../../store/expenseContext";
+import {useExpenseContext} from "../../store/expenseContext";
 
 const modelObj = {
     accountName: undefined,
@@ -23,6 +25,7 @@ const modelObj = {
     const [isFormValid, setIsFormValid] = useState(undefined);
     const { modelState, errorState, handleChange } = useInput(modelObj, errorObj);
     const { user } = useAuthContext();
+    const {addExpenseAccount} = useExpenseContext();
   
     useEffect(() => {
       setIsFormValid(true);
@@ -43,16 +46,14 @@ const modelObj = {
     const handleSubmit = async (e) => {
       e.preventDefault();
       try {
-        const expense = {
+        const expenseAccount = {
           user: user.uid,
-          expenseAccountName:
-            expenseAccounts[modelState["expenseAccount"] - 1].name,
           ...modelState,
-          expenseDate: Timestamp.fromDate(new Date(modelState["expenseDate"])),
+          createdDate: Timestamp.fromDate(new Date()),
         };
-        const docRef = await addDoc(collection(db, "expenses"), expense);
+        const docRef = await addDoc(collection(db, "expenseAccounts"), expenseAccount);
         console.log("Document written with ID: ", docRef.id);
-        addExpense({ id: docRef.id, ...expense });
+        addExpenseAccount({ id: docRef.id, ...expenseAccount });
       } catch (err) {
         console.error("Error adding document: ", err);
       }

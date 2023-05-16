@@ -28,8 +28,9 @@ const Header = () => {
       <Link className={classes.link} to="/">
         Expense Manager
       </Link>
-      <Link to="/accounts" >Accounts</Link>
       {user && IsLoggedIn() && (
+        <>
+      <Link to="/accounts" >Accounts</Link>
         <div className={classes.action}>
           <span>Welcome {user.email}</span>
           <button type="button" onClick={logoutHandler}>
@@ -37,6 +38,7 @@ const Header = () => {
           </button>
           {/* <button type="button">Settings</button> */}
         </div>
+        </>
       )}
     </div>
   );
