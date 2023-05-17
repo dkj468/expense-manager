@@ -11,6 +11,7 @@ export const ExpenseContextProvider = ({ children }) => {
   const [IsLoading, setIsLoading] = useState(false);
 
   const { user } = useAuthContext();
+
   useEffect(() => {
     const fetchExpenseData = async () => {
       setIsLoading(true);
@@ -24,7 +25,7 @@ export const ExpenseContextProvider = ({ children }) => {
             return b.expenseDate - a.expenseDate;
           });
           const filteredData = newData.filter((el) => el.user === user.uid);
-          setExpenseAccounts(filteredData);
+          setExpenses(filteredData);
           setIsLoading(false);
         });
       } catch (err) {
@@ -35,23 +36,27 @@ export const ExpenseContextProvider = ({ children }) => {
     const fetchExpenseAccountData = async () => {
       setIsLoading(true);
       try {
-        await getDocs(collection(db, "expenseAccounts")).then((querySnapshot) => {
-          const newData = querySnapshot.docs.map((doc) => ({
-            ...doc.data(),
-            id: doc.id,
-          }));
-          const filteredData = newData.filter((el) => el.user === user.uid);
-          setExpenses(filteredData);
-          setIsLoading(false);
-        });
+        await getDocs(collection(db, "expenseAccounts")).then(
+          (querySnapshot) => {
+            const newData = querySnapshot.docs.map((doc) => ({
+              ...doc.data(),
+              id: doc.id,
+            }));
+            const filteredData = newData.filter((el) => el.user === user.uid);
+            setExpenseAccounts(filteredData);
+            setIsLoading(false);
+          }
+        );
       } catch (err) {
         console.log(err, err.message);
       }
     };
-
+    if (!user) {
+      return;
+    }
     fetchExpenseData();
     fetchExpenseAccountData();
-  }, [user.uid]);
+  }, [user]);
 
   const addExpense = (expense) => {
     const tempExpenses = [expense, ...expenses];
@@ -62,9 +67,17 @@ export const ExpenseContextProvider = ({ children }) => {
     const tempExpenseAccounts = [expenseAccount, ...expenseAccounts];
     setExpenseAccounts(tempExpenseAccounts);
   };
-  
+
   return (
-    <ExpenseContext.Provider value={{ expenses, IsLoading, addExpense, addExpenseAccount }}>
+    <ExpenseContext.Provider
+      value={{
+        expenses,
+        expenseAccounts,
+        IsLoading,
+        addExpense,
+        addExpenseAccount,
+      }}
+    >
       {children}
     </ExpenseContext.Provider>
   );

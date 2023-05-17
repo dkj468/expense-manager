@@ -3,6 +3,7 @@
 import DataTable from "react-data-table-component";
 // import Expense from "./expense";
 import classes from "./expense-list.module.css";
+import { useExpenseContext } from "../../store/expenseContext";
 
 const convertTimestamp = (timestamp) => {
   let date = timestamp.toDate();
@@ -49,7 +50,7 @@ const columns = [
 ];
 
 const ExpenseList = (props) => {
-  const { expenses } = { ...props };
+  const { expenses } = useExpenseContext();
 
   return (
     <div className={classes["expense-container"]}>

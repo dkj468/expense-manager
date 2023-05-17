@@ -30,14 +30,14 @@ const Header = () => {
       </Link>
       {user && IsLoggedIn() && (
         <>
-      <Link to="/accounts" >Accounts</Link>
-        <div className={classes.action}>
-          <span>Welcome {user.email}</span>
-          <button type="button" onClick={logoutHandler}>
-            Logout
-          </button>
-          {/* <button type="button">Settings</button> */}
-        </div>
+          <Link to="/accounts">Accounts</Link>
+          <div className={classes.action}>
+            <span>Welcome {user.email}</span>
+            <button type="button" onClick={logoutHandler}>
+              Logout
+            </button>
+            {/* <button type="button">Settings</button> */}
+          </div>
         </>
       )}
     </div>
