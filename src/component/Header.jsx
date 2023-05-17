@@ -3,6 +3,7 @@ import classes from "./Header.module.css";
 import { useAuthContext } from "../store/authContext";
 import { auth } from "../firebase";
 import { signOut } from "firebase/auth";
+import Profile from "./Profile";
 const Header = () => {
   const navigate = useNavigate();
   const { user, IsLoggedIn, setLoggedInUser } = useAuthContext();
@@ -28,15 +29,7 @@ const Header = () => {
       <Link className={classes.link} to="/">
         Expense Manager
       </Link>
-      {user && IsLoggedIn() && (
-        <div className={classes.action}>
-          <span>Welcome {user.email}</span>
-          <button type="button" onClick={logoutHandler}>
-            Logout
-          </button>
-          {/* <button type="button">Settings</button> */}
-        </div>
-      )}
+      <Profile />
     </div>
   );
 };
