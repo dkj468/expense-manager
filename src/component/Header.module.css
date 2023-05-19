@@ -1,30 +1,87 @@
-.header {
+.hero {
+  width: 100%;
+  min-height: 10vh;
+  background-color: #eceaff;
+  color: #525252;
+}
+
+nav {
+  background-color: #1a1a1a;
+  width: 100%;
+  padding: 10px 10%;
   display: flex;
-  height: 2rem;
-  padding: 1rem;
   align-items: center;
   justify-content: space-between;
-  background-color: black;
+  position: relative;
+}
+
+.logo {
+  font-size: 2rem;
   color: white;
 }
 
-/* .header button {
-  padding: 1rem;
-  border-radius: 0.4rem;
-  font-size: 1rem;
-  background-color: black;
-  color: white;
-} */
-
-.link {
-  text-decoration: none;
-  color: white;
-  font-size: 1.9rem;
-  font-weight: 700;
-  font-style: oblique;
+.user-pic {
+  width: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-left: 30px;
 }
 
-.action {
+.sub-menu-wrap {
+  position: absolute;
+  top: 100%;
+  right: 5%;
+  width: 280px;
+}
+
+.sub-menu {
+  background: #fcf0f0;
+  padding: 20px;
+  margin: 10px;
+}
+
+.user-info {
   display: flex;
-  gap: 1rem;
+  align-items: center;
+}
+
+.user-info h5 {
+  font-weight: 500;
+}
+
+.user-info img {
+  width: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.sub-menu hr {
+  border: 0;
+  height: 1px;
+  width: 100%;
+  background: #000;
+  margin: 15px 0 10px;
+}
+
+.sub-menu-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #525252;
+}
+
+.sub-menu-link p {
+  width: 100%;
+  margin-top: 12px;
+}
+
+.sub-menu-link img {
+  width: 40px;
+  border-radius: 50%;
+  padding: 1px;
+  margin-right: 15px;
+}
+
+.sub-menu-link span {
+  font-size: 22px;
 }

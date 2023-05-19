@@ -3,9 +3,11 @@ import classes from "./Header.module.css";
 import { useAuthContext } from "../store/authContext";
 import { auth } from "../firebase";
 import { signOut } from "firebase/auth";
+import { useState } from "react";
 const Header = () => {
   const navigate = useNavigate();
   const { user, IsLoggedIn, setLoggedInUser } = useAuthContext();
+  const [showMenu, setIsShowMenu] = useState(false);
 
   const logout = () => {
     signOut(auth)
@@ -23,24 +25,61 @@ const Header = () => {
     logout();
     navigate("/");
   };
+
+  const imgClickHandler = () => {
+    setIsShowMenu((prevState) => {
+      return !prevState;
+    });
+  };
   return (
-    <div className={classes.header}>
-      <Link className={classes.link} to="/">
-        Expense Manager
-      </Link>
-      {user && IsLoggedIn() && (
-        <>
-          <Link to="/accounts">Accounts</Link>
-          <div className={classes.action}>
-            <span>Welcome {user.email}</span>
-            <button type="button" onClick={logoutHandler}>
-              Logout
-            </button>
-            {/* <button type="button">Settings</button> */}
-          </div>
-        </>
-      )}
-    </div>
+    <>
+      <nav>
+        <span className={classes.logo}>ExpenseGPT</span>
+
+        {user && IsLoggedIn() && (
+          <>
+            <img
+              src="./image/profile.png"
+              alt="profile"
+              className={classes["user-pic"]}
+              onClick={imgClickHandler}
+            />
+            {showMenu && (
+              <div
+                className={classes["sub-menu-wrap"]}
+                onClick={imgClickHandler}
+              >
+                <div className={classes["sub-menu"]}>
+                  <div className={classes["user-info"]}>
+                    <h5>Welcome Deepak</h5>
+                  </div>
+                  <hr />
+                  <Link to="/accounts" className={classes["sub-menu-link"]}>
+                    <img src="./image/Account.png" alt="profile" />
+                    <p>Expense Accounts</p>
+                    <span>&gt;</span>
+                  </Link>
+
+                  <Link to="/" className={classes["sub-menu-link"]}>
+                    <img src="./image/user.png" alt="profile" />
+                    <p>Profile</p>
+                    <span>&gt;</span>
+                  </Link>
+                  <Link
+                    className={classes["sub-menu-link"]}
+                    onClick={logoutHandler}
+                  >
+                    <img src="./image/logout.png" alt="profile" />
+                    <p>Logout</p>
+                    <span>&gt;</span>
+                  </Link>
+                </div>
+              </div>
+            )}
+          </>
+        )}
+      </nav>
+    </>
   );
 };
 
