@@ -3,11 +3,11 @@ import classes from "./Header.module.css";
 import { useAuthContext } from "../store/authContext";
 import { auth } from "../firebase";
 import { signOut } from "firebase/auth";
-import { useState } from "react";
+import { useCustomContext } from "../store/CustomContext";
 const Header = () => {
   const navigate = useNavigate();
   const { user, IsLoggedIn, setLoggedInUser } = useAuthContext();
-  const [showMenu, setIsShowMenu] = useState(false);
+  const { showMenu, setIsShowMenu } = useCustomContext();
 
   const logout = () => {
     signOut(auth)
@@ -26,15 +26,12 @@ const Header = () => {
     navigate("/");
   };
 
-  const imgClickHandler = () => {
-    setIsShowMenu((prevState) => {
-      return !prevState;
-    });
-  };
   return (
     <>
       <nav>
-        <span className={classes.logo}>ExpenseGPT</span>
+        <span className={classes.logo} onClick={() => navigate("/")}>
+          ExpenseGPT
+        </span>
 
         {user && IsLoggedIn() && (
           <>
@@ -42,16 +39,13 @@ const Header = () => {
               src="./image/profile.png"
               alt="profile"
               className={classes["user-pic"]}
-              onClick={imgClickHandler}
+              id="profile-img"
             />
             {showMenu && (
-              <div
-                className={classes["sub-menu-wrap"]}
-                onClick={imgClickHandler}
-              >
+              <div className={classes["sub-menu-wrap"]}>
                 <div className={classes["sub-menu"]}>
                   <div className={classes["user-info"]}>
-                    <h5>Welcome Deepak</h5>
+                    <h5>Welcome {user.email.substring(0, 10)}</h5>
                   </div>
                   <hr />
                   <Link to="/accounts" className={classes["sub-menu-link"]}>

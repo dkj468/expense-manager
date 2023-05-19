@@ -18,6 +18,8 @@ nav {
 .logo {
   font-size: 2rem;
   color: white;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .user-pic {
