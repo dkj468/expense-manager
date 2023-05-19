@@ -8,7 +8,6 @@ import { AuthContextProvider } from "./store/authContext";
 import Protected from "./component/authentication/Protected";
 import ExpenseAccountForm from "./component/expense-account/expense-account-form";
 import { useCustomContext } from "./store/CustomContext";
-import { useEffect } from "react";
 
 const router = createBrowserRouter([
   {

@@ -7,7 +7,7 @@ import { useCustomContext } from "../store/CustomContext";
 const Header = () => {
   const navigate = useNavigate();
   const { user, IsLoggedIn, setLoggedInUser } = useAuthContext();
-  const { showMenu, setIsShowMenu } = useCustomContext();
+  const { showMenu } = useCustomContext();
 
   const logout = () => {
     signOut(auth)
