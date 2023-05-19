@@ -24,7 +24,7 @@ const Dashboard = () => {
         <h1>This month total expense : {calculateMonthlyExpense()}</h1>
       </div>
       <div className={classes.dashboard}>
-        <ExpenseList expenses={expenses} />
+        <ExpenseList />
         <ExpenseForm />
       </div>
     </>

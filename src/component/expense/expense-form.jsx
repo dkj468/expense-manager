@@ -15,9 +15,9 @@ const getFormattedDate = (date) => {
   return formatDate;
 };
 const modelObj = {
-  expenseName: undefined,
-  expenseAmount: undefined,
-  expenseAccount: undefined,
+  expenseName: "",
+  expenseAmount: 0,
+  expenseAccount: -1,
   expenseDate: getFormattedDate(new Date()),
 };
 
@@ -28,18 +28,11 @@ const errorObj = {
   expenseDate: undefined,
 };
 
-const expenseAccounts = [
-  { id: 1, name: "ICICI Bank" },
-  { id: 2, name: "HDFC Bank" },
-  { id: 3, name: "PhonePay (HDFC Bank)" },
-  { id: 4, name: "Amazon Pay" },
-  { id: 5, name: "Cash" },
-];
 const ExpenseForm = (props) => {
   const [isFormValid, setIsFormValid] = useState(undefined);
   const { modelState, errorState, handleChange } = useInput(modelObj, errorObj);
   const { user } = useAuthContext();
-  const { addExpense } = useExpenseContext();
+  const { addExpense, expenseAccounts } = useExpenseContext();
 
   useEffect(() => {
     setIsFormValid(true);
@@ -62,8 +55,9 @@ const ExpenseForm = (props) => {
     try {
       const expense = {
         user: user.uid,
-        expenseAccountName:
-          expenseAccounts[modelState["expenseAccount"] - 1].name,
+        expenseAccountName: expenseAccounts.find(
+          (account) => account.id === modelState["expenseAccount"]
+        )?.accountName,
         ...modelState,
         expenseDate: Timestamp.fromDate(new Date(modelState["expenseDate"])),
       };
@@ -118,7 +112,7 @@ const ExpenseForm = (props) => {
             {expenseAccounts.map((account) => {
               return (
                 <option value={account.id} key={account.id}>
-                  {account.name}
+                  {account.accountName}
                 </option>
               );
             })}

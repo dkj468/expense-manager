@@ -22,6 +22,11 @@ const useInput = (modelObj, errorObj) => {
           return { isError: true, error: "Please provide an expense account" };
         }
         return output;
+      case "accountName":
+        if(value === ""){
+          return {isError : true, error:"Please provide an account name"}
+        }
+        return output;
       default:
         return output;
     }

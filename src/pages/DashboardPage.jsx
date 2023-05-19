@@ -1,12 +1,7 @@
 import Dashboard from "../component/dashboard/dashboard";
-import { ExpenseContextProvider } from "../store/expenseContext";
 
 const DashboardPage = () => {
-  return (
-    <ExpenseContextProvider>
-      <Dashboard />
-    </ExpenseContextProvider>
-  );
+  return <Dashboard />;
 };
 
 export default DashboardPage;
