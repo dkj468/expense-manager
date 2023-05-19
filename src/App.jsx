@@ -6,6 +6,7 @@ import RegisterPage from "./pages/RegisterPage";
 import DashboardPage from "./pages/DashboardPage";
 import { AuthContextProvider } from "./store/authContext";
 import Protected from "./component/authentication/Protected";
+import ExpenseAccountForm from "./component/expense-account/expense-account-form";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,14 @@ const router = createBrowserRouter([
           </Protected>
         ),
       },
+      {
+        path:"accounts",
+        element:(
+          <Protected>
+            <ExpenseAccountForm />
+          </Protected>
+        )
+      }
     ],
   },
 ]);
