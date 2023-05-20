@@ -1,5 +1,6 @@
 import classes from "./expense-account-form.module.css";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { collection, addDoc, Timestamp } from "firebase/firestore";
 import { db } from "../../firebase";
 import useInput from "../../hooks/useInput";
@@ -9,13 +10,11 @@ import { useExpenseContext } from "../../store/expenseContext";
 const modelObj = {
   accountName: "",
   accountDescription: "",
-  initialBalance: 0,
 };
 
 const errorObj = {
   accountName: null,
   accountDescription: null,
-  initialBalance: null,
 };
 
 const ExpenseAccountForm = (props) => {
@@ -23,6 +22,7 @@ const ExpenseAccountForm = (props) => {
   const { modelState, errorState, handleChange } = useInput(modelObj, errorObj);
   const { user } = useAuthContext();
   const { addExpenseAccount } = useExpenseContext();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsFormValid(true);
@@ -54,6 +54,7 @@ const ExpenseAccountForm = (props) => {
       );
       console.log("Document written with ID: ", docRef.id);
       addExpenseAccount({ id: docRef.id, ...expenseAccount });
+      navigate("/");
     } catch (err) {
       console.error("Error adding document: ", err);
     }
