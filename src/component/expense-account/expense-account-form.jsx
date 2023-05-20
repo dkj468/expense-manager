@@ -10,14 +10,12 @@ const modelObj = {
   accountName: "",
   accountDescription: "",
   initialBalance: 0,
-  currentBalance: 0,
 };
 
 const errorObj = {
   accountName: null,
   accountDescription: null,
   initialBalance: null,
-  currentBalance: null,
 };
 
 const ExpenseAccountForm = (props) => {
