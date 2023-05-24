@@ -1,12 +1,6 @@
-.hero {
-  width: 100%;
-  min-height: 10vh;
-  background-color: #eceaff;
-  color: #525252;
-}
-
 nav {
-  background-color: #1a1a1a;
+  --tw-bg-opacity: 1;
+  background-color: rgba(16, 163, 127, var(--tw-bg-opacity));
   width: 100%;
   padding: 10px 10%;
   display: flex;
@@ -15,11 +9,23 @@ nav {
   position: relative;
 }
 
+/* text-decoration: none;
+padding: 0.3rem;
+--tw-bg-opacity: 1;
+--tw-text-opacity: 1;
+background-color: rgba(16, 163, 127, var(--tw-bg-opacity));
+color: rgba(255, 255, 255, var(--tw-text-opacity)); */
+
 .logo {
   font-size: 2rem;
   color: white;
   text-decoration: none;
   cursor: pointer;
+}
+
+.logo img {
+  height: 60px;
+  width: 60px;
 }
 
 .user-pic {
@@ -34,10 +40,12 @@ nav {
   top: 100%;
   right: 5%;
   width: 280px;
+  z-index: 1;
 }
 
 .sub-menu {
-  background: #fcf0f0;
+  --tw-bg-opacity: 1;
+  background-color: rgba(16, 163, 127, var(--tw-bg-opacity));
   padding: 20px;
   margin: 10px;
 }
@@ -49,6 +57,7 @@ nav {
 
 .user-info h5 {
   font-weight: 500;
+  color: white;
 }
 
 .user-info img {
@@ -65,11 +74,16 @@ nav {
   margin: 15px 0 10px;
 }
 
+.sub-menu a:hover {
+  text-decoration: none;
+  color: white;
+}
+
 .sub-menu-link {
   display: flex;
   align-items: center;
   text-decoration: none;
-  color: #525252;
+  color: white;
 }
 
 .sub-menu-link p {
