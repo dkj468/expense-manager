@@ -5,7 +5,7 @@ import { ExpenseContextProvider } from "../store/expenseContext";
 const RootPage = () => {
   return (
     <>
-      <Header />
+   
       <ExpenseContextProvider>
         <Outlet />
       </ExpenseContextProvider>

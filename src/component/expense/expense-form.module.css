@@ -53,12 +53,10 @@
 }
 
 button {
-  padding: 0.3rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  border-radius: 0.4rem;
-  color: white;
-  background-color: black;
+  --tw-bg-opacity: 1;
+  --tw-text-opacity: 1;
+  background-color: rgba(16,163,127,var(--tw-bg-opacity));
+  color: rgba(255,255,255,var(--tw-text-opacity));
 }
 
 button:disabled,

@@ -66,8 +66,11 @@ const Register = () => {
     //sendUserEmailVerification();
   };
   return (
-    <>
+    <div className={classes.register}>
       {isLoading && <Loader />}
+      <img src="./Budget - 96.png" alt='budget photo' />
+      <h4>Create your account</h4>
+      <p className={classes['verify-text']}>Please note that email verification is required for signup. A verification email will be sent - Please check spam folder if not found in inbox.</p>
       <form className={classes.form} onSubmit={submitHandler}>
         <input
           type="email"
@@ -96,7 +99,7 @@ const Register = () => {
           </span>
         )}
       </form>
-    </>
+    </div>
   );
 };
 
