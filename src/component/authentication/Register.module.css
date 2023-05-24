@@ -1,4 +1,4 @@
-.register{
+.register {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -16,14 +16,14 @@
   width: 300px;
   color: gray;
   justify-content: space-evenly;
-  font-size: .7rem;
+  font-size: 0.8rem;
 }
 
 .form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  width: 50%;
+  width: 40%;
   margin: auto;
   margin-top: 1rem;
 }
@@ -32,9 +32,19 @@ input {
   padding: 0.5rem;
 }
 
-button {
-  height: 2rem;
+.log-in {
+  font-weight: 600;
 }
+
+.log-in a {
+  text-decoration: none;
+  --tw-bg-opacity: 1;
+  color: rgba(16, 163, 127, var(--tw-bg-opacity));
+}
+
+/* button {
+  height: 2rem;
+} */
 
 .error {
   color: red;

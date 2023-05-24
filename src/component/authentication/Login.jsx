@@ -58,8 +58,10 @@ const Login = () => {
     login(formData.email, formData.password);
   };
   return (
-    <>
+    <div className={classes.login}>
       {isLoading && <Loader />}
+      <img src="./Budget - 96.png" alt="budget" />
+      <h3>Welcome back</h3>
       <form className={classes.form} onSubmit={loginHandler}>
         <input
           type="email"
@@ -81,12 +83,11 @@ const Login = () => {
             {getErrorFromCode(error.errorCode)}
           </span>
         )}
-        <div>
-          <label>Don't have a account yet ?</label>
-          <Link to="/register"> SignUp</Link>
-        </div>
       </form>
-    </>
+      <span className={classes["Sign-up"]}>
+        Already have an account ? <Link to="/register">Sign up</Link>
+      </span>
+    </div>
   );
 };
 

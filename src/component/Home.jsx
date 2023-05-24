@@ -1,14 +1,13 @@
 import { Link } from "react-router-dom";
 import classes from "./Home.module.css";
-import Login from "./authentication/Login";
 const Home = () => {
   return (
     <div className={classes.home}>
-      <img src="./Budget - 96.png" alt='budget photo' />
+      <img src="./Budget - 96.png" alt="budget" />
       <span>Welcome to Budget Buddy</span>
-      <div className={classes['btn-grp']}>
-      <Link to="/login">Log In</Link>
-      <Link to="/register">Sign up</Link>
+      <div className={classes["btn-grp"]}>
+        <Link to="/login">Log In</Link>
+        <Link to="/register">Sign up</Link>
       </div>
     </div>
     // <div className={classes.home}>

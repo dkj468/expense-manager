@@ -7,6 +7,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../../firebase";
 import { getErrorFromCode } from "../../Utils/AuthError";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   const [formData, setFormData] = useState({});
@@ -68,9 +69,13 @@ const Register = () => {
   return (
     <div className={classes.register}>
       {isLoading && <Loader />}
-      <img src="./Budget - 96.png" alt='budget photo' />
+      <img src="./Budget - 96.png" alt="budget" />
       <h4>Create your account</h4>
-      <p className={classes['verify-text']}>Please note that email verification is required for signup. A verification email will be sent - Please check spam folder if not found in inbox.</p>
+      <p className={classes["verify-text"]}>
+        Please note that email verification is required for signup. A
+        verification email will be sent - Please check spam folder if not found
+        in inbox.
+      </p>
       <form className={classes.form} onSubmit={submitHandler}>
         <input
           type="email"
@@ -99,6 +104,9 @@ const Register = () => {
           </span>
         )}
       </form>
+      <span className={classes["log-in"]}>
+        Already have an account ? <Link to="/login">Log In</Link>
+      </span>
     </div>
   );
 };

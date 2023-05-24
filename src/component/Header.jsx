@@ -30,7 +30,8 @@ const Header = () => {
     <>
       <nav>
         <span className={classes.logo} onClick={() => navigate("/")}>
-          ExpenseGPT
+          <img src="./Budget - 96.png" alt="budget" />
+          Budget Buddy
         </span>
 
         {user && IsLoggedIn() && (

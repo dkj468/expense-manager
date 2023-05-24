@@ -1,9 +1,39 @@
+.login {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 1rem;
+  flex-direction: column;
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  width: 100%;
+}
+
 .form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   margin-top: 2rem;
+  width: 100%;
   padding: 1rem;
+}
+
+@media screen and (min-width: 480px) {
+  .form {
+    width: 40%;
+  }
+}
+
+.Sign-up {
+  font-weight: 600;
+}
+
+.Sign-up a {
+  text-decoration: none;
+  --tw-bg-opacity: 1;
+  color: rgba(16, 163, 127, var(--tw-bg-opacity));
 }
 
 .error {
