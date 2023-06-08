@@ -1,3 +1,4 @@
+import Footer from "../component/Footer";
 import Header from "../component/Header";
 import Protected from "../component/authentication/Protected";
 import Dashboard from "../component/dashboard/dashboard";
@@ -7,6 +8,7 @@ const DashboardPage = () => {
     <Protected>
       <Header />
       <Dashboard />
+      <Footer />
     </Protected>
   );
 };

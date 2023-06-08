@@ -4,8 +4,8 @@
   flex-direction: column;
   gap: 2rem;
   margin-top: 1rem;
-  border-top: 1px solid black;
   margin: auto;
+  width: 80%;
 }
 
 @media screen and (min-width: 560px) {

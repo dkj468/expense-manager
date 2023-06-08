@@ -1,0 +1,10 @@
+
+.footer {
+    position: absolute;
+    bottom: 0px;
+    height: 2rem;
+    --tw-bg-opacity: 1;
+    background-color:  rgba(16, 163, 127, var(--tw-bg-opacity));
+    width: 100%;
+    color:white;
+}

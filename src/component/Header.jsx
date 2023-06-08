@@ -28,7 +28,7 @@ const Header = () => {
 
   return (
     <>
-      <nav>
+      <nav className={classes.nav}>
         <span className={classes.logo} onClick={() => navigate("/")}>
           <img src="./Budget - 96.png" alt="budget" />
           Budget Buddy

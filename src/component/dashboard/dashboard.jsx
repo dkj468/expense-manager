@@ -3,6 +3,7 @@ import ExpenseList from "../expense/expense-list";
 import Loader from "../UI/Loader";
 import classes from "./dashboard.module.css";
 import { useExpenseContext } from "../../store/expenseContext";
+import SideMenu from "../sideMenu";
 
 const Dashboard = () => {
   const { expenses, IsLoading } = useExpenseContext();
@@ -19,15 +20,11 @@ const Dashboard = () => {
     return <Loader />;
   }
   return (
-    <>
-      <div>
-        <h1>This month total expense : {calculateMonthlyExpense()}</h1>
-      </div>
-      <div className={classes.dashboard}>
-        <ExpenseList />
-        <ExpenseForm />
-      </div>
-    </>
+    <div className={classes.dashboard}>
+    {/* <ExpenseList />
+    <ExpenseForm /> */}
+    <SideMenu />
+  </div>
   );
 };
 
