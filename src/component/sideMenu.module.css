@@ -2,8 +2,45 @@
 
 .sidemenu {
 
+    background-color: black;
     height: 90vh;
-    width: 200px;
+    width: 300px;
     position: absolute;
     left: 0px;;
+    color:white;
+}
+
+.menu-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    justify-content: flex-start;
+    color: white;
+    padding: 0.5rem;
+    margin-top: 1rem;
+    height: 90vh;
+}
+/* 
+.sidemenu ul {
+    list-style: none;
+} */
+/* .sidemenu ul NavLink {
+    margin-top: 1rem;
+    text-decoration: none;
+    font-size: 1.5rem;
+} */
+
+.item {
+    border-bottom: 1px solid white;
+}
+
+.last-item {
+    align-self: flex-end;
+}
+.menu-wrapper a{
+    cursor: pointer;
+    margin-left: 0.5rem;
+    text-decoration: none;
+    font-size: 1.5rem;
+   color: white;
 }
